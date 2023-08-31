@@ -23,7 +23,6 @@ public class US01_RegisterStepDefs {
     private static String fakeUsername;
     private static String fakeSsn;
     private static String fakePhoneNumber;
-    ResultSet resultSet;
 
 
     @Given("go to the {string}")
@@ -85,42 +84,4 @@ public class US01_RegisterStepDefs {
 
     }
 
-    @When("connect to database")
-    public void connectToDatabase() {
-
-
-    }
-
-
-    @Given("get guest user via username {string}")
-    public void getGuestUserViaUsername(String username) throws SQLException {
-
-        String sqlQuery = "SELECT * FROM guest_user WHERE username ='" + fakeUsername + "'";
-
-        resultSet = JDBCUtils.executeQuery(sqlQuery);
-        resultSet.next();
-
-
-    }
-
-    @Then("body contains birth_day {string}, birth_place {string}, gender {string}, name {string}, phone_number {string}, ssn {string}, surname {string}, username {string}")
-    public void body_contains_birth_day_birth_place_gender_name_phone_number_ssn_surname_username(String birth_day, String birth_place, String gender, String name, String phone_number, String ssn, String surname, String username) throws SQLException {
-
-        String actBirth_day = resultSet.getString("birth_day");
-        String actBirth_place = resultSet.getString("birth_place");
-        String actGender = resultSet.getString("gender");
-        String actName = resultSet.getString("name");
-        String actPhone_number = resultSet.getString("phone_number");
-        String actSsn = resultSet.getString("ssn");
-        String actSurname = resultSet.getString("surname");
-        String actUsername = resultSet.getString("username");
-        assertEquals(birth_day, actBirth_day);
-        assertEquals(birth_place.trim(), actBirth_place.trim());
-        assertEquals(gender, actGender);
-        assertEquals(name, actName);
-        assertEquals(fakePhoneNumber, actPhone_number);
-        assertEquals(fakeSsn, actSsn);
-        assertEquals(surname.trim(), actSurname.trim());
-        assertEquals(fakeUsername, actUsername);
-    }
 }
