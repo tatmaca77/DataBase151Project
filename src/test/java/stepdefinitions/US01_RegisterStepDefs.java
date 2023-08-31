@@ -10,8 +10,7 @@ import utilities.Driver;
 import utilities.JDBCUtils;
 import utilities.ReusableMethods;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,6 +22,8 @@ public class US01_RegisterStepDefs {
     private static String fakeUsername;
     private static String fakeSsn;
     private static String fakePhoneNumber;
+    Connection connection;
+    Statement statement;
 
 
     @Given("go to the {string}")
@@ -85,12 +86,16 @@ public class US01_RegisterStepDefs {
     }
 
     @Given("connect to database")
-    public void connect_to_database() {
+    public void connect_to_database() throws SQLException {
+
+        connection = DriverManager.getConnection("jdbc:postgresql://managementonschools.com:5432/school_management","select_user","43w5ijfso");
 
 
     }
     @When("get guest user via username {string}")
-    public void get_guest_user_via_username(String username) {
+    public void get_guest_user_via_username(String username) throws SQLException {
+
+        statement = connection.createStatement();
 
 
     }

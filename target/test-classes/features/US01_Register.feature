@@ -14,6 +14,7 @@ Feature: Registration Feature
 
 
 
+    @Database
   Scenario Outline: Validate registered user
     #kayitli kullaniciyi database'de dogrula
     Given connect to database
