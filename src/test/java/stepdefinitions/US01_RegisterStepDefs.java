@@ -47,7 +47,8 @@ public class US01_RegisterStepDefs {
         registerPage.surNameInput.sendKeys(surname);
         registerPage.birthPlaceInput.sendKeys(birth_place);
         fakePhoneNumber = faker.number().numberBetween(100, 999) + " " + faker.number().numberBetween(100, 999) + " " + faker.number().numberBetween(1000, 9999);
-        registerPage.phoneNumberInput.sendKeys(phone_number);
+        System.out.println("fakePhoneNumber: " +fakePhoneNumber);
+        registerPage.phoneNumberInput.sendKeys(fakePhoneNumber);
 
         if (gender.equalsIgnoreCase("male")) {
             clickElementByJS(registerPage.maleRadioButton);
@@ -57,9 +58,9 @@ public class US01_RegisterStepDefs {
 
         registerPage.birthDay.sendKeys(birth_day);
         fakeSsn = faker.idNumber().ssnValid();
-        registerPage.ssnInput.sendKeys(ssn);
+        registerPage.ssnInput.sendKeys(fakeSsn);
         fakeUsername = faker.name().username();
-        registerPage.userNameInput.sendKeys(username);
+        registerPage.userNameInput.sendKeys(fakeUsername);
         registerPage.passwordInput.sendKeys(password);
     }
 
@@ -86,6 +87,7 @@ public class US01_RegisterStepDefs {
 
         connection = DriverManager.getConnection("jdbc:postgresql://managementonschools.com:5432/school_management", "select_user", "43w5ijfso");
 
+
     }
 
     @When("get guest user via username {string}")
@@ -93,7 +95,7 @@ public class US01_RegisterStepDefs {
 
         statement = connection.createStatement();
 
-        String query = "select * from guest_user where username = '" + username + "'";
+        String query = "select * from guest_user where username = '" + fakeUsername + "'";
 
         resultSet = statement.executeQuery(query);
 
@@ -116,10 +118,10 @@ public class US01_RegisterStepDefs {
         assertEquals(birthplace, actualBirthPlace);
         assertEquals(gender, actualGender);
         assertEquals(name, actualName);
-        assertEquals(phoneNumber, actualPhoneNumber);
-        assertEquals(ssn, actualSsn);
+        assertEquals(fakePhoneNumber, actualPhoneNumber);
+        assertEquals(fakeSsn, actualSsn);
         assertEquals(surname, actualSurname);
-        assertEquals(username, actualUsername);
+        assertEquals(fakeUsername, actualUsername);
 
     }
 
