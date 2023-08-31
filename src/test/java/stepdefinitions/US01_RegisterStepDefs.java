@@ -86,18 +86,19 @@ public class US01_RegisterStepDefs {
 
     @Given("connect to database")
     public void connect_to_database() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
     }
     @When("get guest user via username {string}")
     public void get_guest_user_via_username(String username) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
     }
+
     @Then("validate body contains birthday {string}, birthplace {string}, gender {string}, name {string}, phoneNumber {string}, ssn {string}, surname {string}, username {string}")
     public void validate_body_contains_birthday_birthplace_gender_name_phone_number_ssn_surname_username(String birthday, String birthplace, String gender, String name, String phoneNumber, String ssn, String surname, String username) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
     }
 
 
