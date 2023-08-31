@@ -24,6 +24,7 @@ public class US01_RegisterStepDefs {
     private static String fakePhoneNumber;
     Connection connection;
     Statement statement;
+    ResultSet resultSet;
 
 
     @Given("go to the {string}")
@@ -96,6 +97,7 @@ public class US01_RegisterStepDefs {
     public void get_guest_user_via_username(String username) throws SQLException {
 
         statement = connection.createStatement();
+        resultSet = statement.executeQuery("select * from guest_user where username = '"+username+"'");
 
 
     }
