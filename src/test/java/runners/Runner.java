@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 
         features = "./src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@Database",
-        dryRun = true
+        tags = "@Register or @Database",
+        dryRun = false
 
 )
 public class Runner {
